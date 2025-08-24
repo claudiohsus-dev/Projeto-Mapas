@@ -144,9 +144,6 @@
                 <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="acesso-saneamento">
                     💧 Acesso a Saneamento
                 </a>
-                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="indicadores-geoespaciais">
-                    🗺️ Indicadores Geoespacializáveis
-                </a>
             </nav>
 
             <div class="mt-8 p-4 bg-blue-50 rounded-lg">
@@ -177,23 +174,13 @@
                         <div class="data-card">
                             <h3 class="font-semibold text-blue-800 mb-2">População (Censo 2022)</h3>
                             <p class="text-3xl font-bold text-gray-800">85.655</p>
-                            <p class="text-sm text-gray-600">habitantes</p>
+                            <p class="text-sm text-gray-600">pessoas</p>
                         </div>
                         <div class="data-card">
-                            <h3 class="font-semibold text-blue-800 mb-2">Variação Populacional (2010–2022)</h3>
-                            <p class="text-3xl font-bold text-gray-800">-2,78%</p>
-                            <p class="text-sm text-gray-600">em relação ao Censo de 2010</p>
+                            <h3 class="font-semibold text-blue-800 mb-2">População Estimada (2024)</h3>
+                            <p class="text-3xl font-bold text-gray-800">90.028</p>
+                            <p class="text-sm text-gray-600">pessoas</p>
                         </div>
-                    </div>
-                    <div class="data-card">
-                        <h3 class="font-semibold text-blue-800 mb-2">Ranking Estadual</h3>
-                        <p class="text-3xl font-bold text-gray-800">20ª posição</p>
-                        <p class="text-sm text-gray-600">entre 417 municípios da Bahia</p>
-                    </div>
-                    <div class="data-card">
-                        <h3 class="font-semibold text-blue-800 mb-2">Ranking Nacional</h3>
-                        <p class="text-3xl font-bold text-gray-800">372ª posição</p>
-                        <p class="text-sm text-gray-600">entre 5.570 municípios do Brasil</p>
                     </div>
                 </div>
 
@@ -354,3 +341,80 @@
                                 📥 Exportar Dados
                             </button>
                             <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Dados de desemprego serão atualizados em breve...</p>
+                </div>
+
+                <!-- Acesso a Saneamento -->
+                <div class="data-section hidden" id="acesso-saneamento">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Finanças Públicas</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">Receitas (2024)</h3>
+                            <p class="text-2xl font-bold text-gray-800">R$ 394.225.894,11</p>
+                            <p class="text-sm text-gray-600">total de receitas brutas realizadas</p>
+                        </div>
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">Despesas (2024)</h3>
+                            <p class="text-2xl font-bold text-gray-800">R$ 408.795.045,07</p>
+                            <p class="text-sm text-gray-600">total de despesas brutas empenhadas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Script para alternar o menu em dispositivos móveis
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+        });
+
+        // Script para alternar entre as seções de dados
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        const dataSections = document.querySelectorAll('.data-section');
+
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = item.getAttribute('data-index');
+
+                // Remover a classe 'active' de todos os itens do menu
+                sidebarItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                // Ocultar todas as seções de dados
+                dataSections.forEach(section => section.classList.add('hidden'));
+
+                // Mostrar a seção correspondente
+                document.getElementById(targetId).classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
