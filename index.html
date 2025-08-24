@@ -162,17 +162,26 @@
             <div class="bg-white rounded-lg shadow-lg p-6 fade-in" id="content">
                 <!-- População Total -->
                 <div class="data-section" id="populacao">
+					<p class="text-gray-600 hidden" id="source-populacao">Fonte: IBGE, Censo Demográfico 2022.</p>
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">População Total</h2>
                         <div class="flex space-x-2">
                             <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                                ℹ️ Informações
-                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+								ℹ️ Informações
+							</button>
+
+
                         </div>
                     </div>
+                <div class="hidden" id="card-source-populacao">
+					<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+						<p class="text-blue-800">Fonte: IBGE, Censo Demográfico 2022.</p>
+					</div>
+				</div>
+   
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div class="data-card">
@@ -187,46 +196,57 @@
                         </div>
                     </div>
                 </div>
+                
 
                 <!-- Densidade Demográfica -->
                 <div class="data-section hidden" id="densidade">
-                    <div class="flex items-center justify-between mb-6">
-                        <h2 class="text-2xl font-bold text-gray-800">Densidade Demográfica</h2>
-                        <div class="flex space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                                📥 Exportar Dados
-                            </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                                ℹ️ Informações
-                            </button>
-                        </div>
-                    </div>
+					<p class="text-gray-600 hidden" id="source-densidade">Fonte: IBGE, Censo Demográfico 2022.</p>
+					<div class="flex items-center justify-between mb-6">
+						<h2 class="text-2xl font-bold text-gray-800">Densidade Demográfica</h2>
+						<div class="flex space-x-2">
+							<button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+								📥 Exportar Dados
+							</button>
+							<button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+								ℹ️ Informações
+							</button>
+						</div>
+					</div>
+					<div class="hidden" id="card-source-densidade">
+					 <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+						  <p class="text-blue-800">Fonte: IBGE, Censo Demográfico 2022.</p>
+						 </div>
+						</div>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+						<div class="data-card">
+							<h3 class="font-semibold text-blue-800 mb-2">Área Territorial</h3>
+							<p class="text-3xl font-bold text-gray-800">1.123,975</p>
+							<p class="text-sm text-gray-600">km² (2024)</p>
+					    </div>
+					    <div class="data-card">
+							<h3 class="font-semibold text-blue-800 mb-2">Densidade Demográfica</h3>
+							<p class="text-3xl font-bold text-gray-800">76,21</p>
+							<p class="text-sm text-gray-600">hab/km² (2022)</p>
+						</div>
+					</div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div class="data-card">
-                            <h3 class="font-semibold text-blue-800 mb-2">Área Territorial</h3>
-                            <p class="text-3xl font-bold text-gray-800">1.123,975</p>
-                            <p class="text-sm text-gray-600">km² (2024)</p>
-                        </div>
-                        <div class="data-card">
-                            <h3 class="font-semibold text-blue-800 mb-2">Densidade Demográfica</h3>
-                            <p class="text-3xl font-bold text-gray-800">76,21</p>
-                            <p class="text-sm text-gray-600">hab/km² (2022)</p>
-                        </div>
-                    </div>
-                </div>
+           
+                
 
                 <!-- Idade Média -->
                 <div class="data-section hidden" id="idade-media">
+					<p class="text-gray-600 hidden" id="source-idade-media">Fonte: IBGE, Censo Demográfico 2010 e 2022.</p>
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">Indicadores Sociais</h2>
                         <div class="flex space-x-2">
                             <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                                ℹ️ Informações
-                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+								ℹ️ Informações
+							</button>
+
+
                         </div>
                     </div>
 
@@ -252,9 +272,11 @@
                             <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                                ℹ️ Informações
-                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+								ℹ️ Informações
+							</button>
+
+
                         </div>
                     </div>
                     <p class="text-gray-600">Dados de natalidade serão atualizados em breve...</p>
@@ -268,9 +290,10 @@
                             <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                                ℹ️ Informações
-                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+								ℹ️ Informações
+							</button>
+
                         </div>
                     </div>
 
@@ -289,9 +312,10 @@
                             <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                                ℹ️ Informações
-                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+								ℹ️ Informações
+							</button>
+
                         </div>
                     </div>
                     <p class="text-gray-600">Dados de expectativa de vida serão atualizados em breve...</p>
@@ -305,9 +329,10 @@
                             <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                                ℹ️ Informações
-                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+								ℹ️ Informações
+							</button>
+
                         </div>
                     </div>
                     <p class="text-gray-600">Dados de alfabetização serão atualizados em breve...</p>
@@ -321,9 +346,10 @@
                             <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                                ℹ️ Informações
-                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+								ℹ️ Informações
+							</button>
+
                         </div>
                     </div>
 
@@ -344,9 +370,10 @@
                             <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                                ℹ️ Informações
-                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+								ℹ️ Informações
+							</button>
+
                         </div>
                     </div>
                     <p class="text-gray-600">Dados de desemprego serão atualizados em breve...</p>
@@ -360,9 +387,10 @@
                             <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                                ℹ️ Informações
-                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+								ℹ️ Informações
+							</button>
+
                         </div>
                     </div>
 
@@ -405,42 +433,60 @@
                 </div> <!-- Fechamento da seção Sobre Nós -->
     
 
-    <script>
-        // Script para alternar o menu em dispositivos móveis
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
+<script>
+    // Elementos do menu e overlay
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
 
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('open');
-        });
+    // Alternar sidebar em dispositivos móveis
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('open');
+    });
 
-        overlay.addEventListener('click', () => {
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+    });
+
+    // Alternar entre as seções de dados
+    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    const dataSections = document.querySelectorAll('.data-section');
+
+    sidebarItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const targetId = item.getAttribute('data-index');
+
+            // Remover active de todos e adicionar ao clicado
+            sidebarItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+
+            // Esconder todas as seções e mostrar a clicada
+            dataSections.forEach(section => section.classList.add('hidden'));
+            document.getElementById(targetId).classList.remove('hidden');
+
+            // Fechar sidebar em mobile
             sidebar.classList.remove('open');
             overlay.classList.remove('open');
         });
+    });
 
-        // Script para alternar entre as seções de dados
-        const sidebarItems = document.querySelectorAll('.sidebar-item');
-        const dataSections = document.querySelectorAll('.data-section');
-
-        sidebarItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = item.getAttribute('data-index');
-
-                // Remover a classe 'active' de todos os itens do menu
-                sidebarItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-
-                // Ocultar todas as seções de dados
-                dataSections.forEach(section => section.classList.add('hidden'));
-
-                // Mostrar a seção correspondente
-                document.getElementById(targetId).classList.remove('hidden');
-            });
+    // Alternar card de informações de cada seção
+    dataSections.forEach(section => {
+    const infoButton = section.querySelector('.info-btn');
+    if(infoButton){
+		infoButton.addEventListener('click', () => {
+            const cardId = `card-source-${section.id}`;
+            const cardElement = document.getElementById(cardId);
+            if(cardElement) cardElement.classList.toggle('hidden');
         });
-    </script>
+    }
+});
+
+</script>
+
 </body>
 </html>
