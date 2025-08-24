@@ -35,6 +35,14 @@
             justify-content: center;
         }
         
+        .data-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid #007bff;
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -147,41 +155,224 @@
         </aside>
 
         <main class="flex-1 p-6">
-            <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800" id="titulo-indice">População Total</h2>
-                    <div class="flex space-x-2">
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                            📥 Exportar Dados
-                        </button>
-                        <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-                            ℹ️ Informações
-                        </button>
+            <div class="bg-white rounded-lg shadow-lg p-6 fade-in" id="content">
+                <!-- População Total -->
+                <div class="data-section" id="populacao">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">População Total</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">População (Censo 2022)</h3>
+                            <p class="text-3xl font-bold text-gray-800">85.655</p>
+                            <p class="text-sm text-gray-600">pessoas</p>
+                        </div>
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">População Estimada (2024)</h3>
+                            <p class="text-3xl font-bold text-gray-800">90.028</p>
+                            <p class="text-sm text-gray-600">pessoas</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mb-6">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-blue-50 p-4 rounded-lg">
-                            <div class="text-2xl font-bold text-blue-800">75.243</div>
-                            <div class="text-sm text-blue-600">Habitantes (2022)</div>
+                <!-- Densidade Demográfica -->
+                <div class="data-section hidden" id="densidade">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Densidade Demográfica</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
                         </div>
-                        <div class="bg-green-50 p-4 rounded-lg">
-                            <div class="text-2xl font-bold text-green-800">+2.1%</div>
-                            <div class="text-sm text-green-600">Crescimento Anual</div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">Área Territorial</h3>
+                            <p class="text-3xl font-bold text-gray-800">1.123,975</p>
+                            <p class="text-sm text-gray-600">km² (2024)</p>
                         </div>
-                        <div class="bg-purple-50 p-4 rounded-lg">
-                            <div class="text-2xl font-bold text-purple-800">187º</div>
-                            <div class="text-sm text-purple-600">Posição no BA</div>
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">Densidade Demográfica</h3>
+                            <p class="text-3xl font-bold text-gray-800">76,21</p>
+                            <p class="text-sm text-gray-600">hab/km² (2022)</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="map-container rounded-lg mb-6" id="mapa-container">
-                    <div class="text-center text-gray-500">
-                        <div class="text-6xl mb-4">🗺️</div>
-                        <h3 class="text-xl font-semibold mb-2">Mapa Demográfico</h3>
-                        <p class="text-sm">Espaço reservado para o mapa temático de Valença-BA.</p>
+                <!-- Idade Média -->
+                <div class="data-section hidden" id="idade-media">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Indicadores Sociais</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">Escolarização (6 a 14 anos)</h3>
+                            <p class="text-3xl font-bold text-gray-800">96,8%</p>
+                            <p class="text-sm text-gray-600">(2022)</p>
+                        </div>
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">IDHM</h3>
+                            <p class="text-3xl font-bold text-gray-800">0,623</p>
+                            <p class="text-sm text-gray-600">(2010)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Taxa de Natalidade -->
+                <div class="data-section hidden" id="taxa-natalidade">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Taxa de Natalidade</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Dados de natalidade serão atualizados em breve...</p>
+                </div>
+
+                <!-- Taxa de Mortalidade -->
+                <div class="data-section hidden" id="taxa-mortalidade">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Saúde Pública</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="data-card">
+                        <h3 class="font-semibold text-blue-800 mb-2">Mortalidade Infantil</h3>
+                        <p class="text-3xl font-bold text-gray-800">17,32</p>
+                        <p class="text-sm text-gray-600">óbitos por mil nascidos vivos (2023)</p>
+                    </div>
+                </div>
+
+                <!-- Expectativa de Vida -->
+                <div class="data-section hidden" id="expectativa-vida">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Expectativa de Vida</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Dados de expectativa de vida serão atualizados em breve...</p>
+                </div>
+
+                <!-- Taxa de Alfabetização -->
+                <div class="data-section hidden" id="taxa-alfabetizacao">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Taxa de Alfabetização</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Dados de alfabetização serão atualizados em breve...</p>
+                </div>
+
+                <!-- Renda Média -->
+                <div class="data-section hidden" id="renda-media">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Indicadores Econômicos</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">PIB per capita</h3>
+                            <p class="text-3xl font-bold text-gray-800">R$ 17.784,63</p>
+                            <p class="text-sm text-gray-600">(2021)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Taxa de Desemprego -->
+                <div class="data-section hidden" id="taxa-desemprego">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Taxa de Desemprego</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">Dados de desemprego serão atualizados em breve...</p>
+                </div>
+
+                <!-- Acesso a Saneamento -->
+                <div class="data-section hidden" id="acesso-saneamento">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Finanças Públicas</h2>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">Receitas (2024)</h3>
+                            <p class="text-2xl font-bold text-gray-800">R$ 394.225.894,11</p>
+                            <p class="text-sm text-gray-600">total de receitas brutas realizadas</p>
+                        </div>
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">Despesas (2024)</h3>
+                            <p class="text-2xl font-bold text-gray-800">R$ 408.795.045,07</p>
+                            <p class="text-sm text-gray-600">total de despesas brutas empenhadas</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -202,6 +393,27 @@
         overlay.addEventListener('click', () => {
             sidebar.classList.remove('open');
             overlay.classList.remove('open');
+        });
+
+        // Script para alternar entre as seções de dados
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        const dataSections = document.querySelectorAll('.data-section');
+
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = item.getAttribute('data-index');
+
+                // Remover a classe 'active' de todos os itens do menu
+                sidebarItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                // Ocultar todas as seções de dados
+                dataSections.forEach(section => section.classList.add('hidden'));
+
+                // Mostrar a seção correspondente
+                document.getElementById(targetId).classList.remove('hidden');
+            });
         });
     </script>
 </body>
