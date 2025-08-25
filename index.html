@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Índices Demográficos - Valença/BA</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         .ibge-gradient {
             background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
         }
-        
+
         .sidebar-item {
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
         }
-        
+
         .sidebar-item:hover {
             background-color: #f1f5f9;
             border-left-color: #007bff;
         }
-        
+
         .sidebar-item.active {
             background-color: #e6f0fa;
             border-left-color: #007bff;
             font-weight: 600;
         }
-        
+
         .map-container {
             min-height: 500px;
             background: #f8fafc;
@@ -34,7 +36,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .data-card {
             background: #f8fafc;
             border-radius: 8px;
@@ -42,16 +44,23 @@
             margin-bottom: 12px;
             border-left: 4px solid #007bff;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .fade-in {
             animation: fadeIn 0.5s ease-out;
         }
-        
+
         @media (max-width: 768px) {
             .sidebar {
                 position: fixed;
@@ -62,11 +71,11 @@
                 z-index: 1000;
                 transition: left 0.3s ease;
             }
-            
+
             .sidebar.open {
                 left: 0;
             }
-            
+
             .overlay {
                 display: none;
                 position: fixed;
@@ -74,16 +83,17 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(0,0,0,0.5);
+                background: rgba(0, 0, 0, 0.5);
                 z-index: 999;
             }
-            
+
             .overlay.open {
                 display: block;
             }
         }
     </style>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex flex-col">
     <div class="overlay" id="overlay"></div>
 
@@ -92,17 +102,20 @@
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
                     <div class="bg-white p-2 rounded-lg">
-                        <img src="Mapa_valença.png" alt="Mapa do município de Valença-BA mostrando a divisão territorial e limites municipais" class="w-12 h-12" />
+                        <img src="Mapa_valença.png"
+                            alt="Mapa do município de Valença-BA mostrando a divisão territorial e limites municipais"
+                            class="w-12 h-12" />
                     </div>
                     <div>
                         <h1 class="text-2xl font-bold">Valença - BA</h1>
                         <p class="text-sm opacity-90">Sistema de Índices Demográficos</p>
                     </div>
                 </div>
-                
+
                 <button class="md:hidden text-white p-2" id="menuToggle">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
@@ -112,42 +125,53 @@
     <div class="flex flex-1">
         <aside class="sidebar bg-white shadow-lg w-64 p-4" id="sidebar">
             <h2 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Índices Demográficos</h2>
-            
+
             <nav class="space-y-1">
-                <a href="#" class="sidebar-item active block p-3 rounded text-gray-700 hover:text-blue-800" data-index="populacao">
+                <a href="#" class="sidebar-item active block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="populacao">
                     📊 População Total
                 </a>
-                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="densidade">
+                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="densidade">
                     🏙️ Densidade Demográfica
                 </a>
-                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="idade-media">
+                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="idade-media">
                     👥 Idade Média
                 </a>
-                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="taxa-natalidade">
+                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="taxa-natalidade">
                     👶 Taxa de Natalidade
                 </a>
-                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="taxa-mortalidade">
+                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="taxa-mortalidade">
                     ⚰️ Taxa de Mortalidade
                 </a>
-                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="expectativa-vida">
+                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="expectativa-vida">
                     🎂 Expectativa de Vida
                 </a>
-                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="taxa-alfabetizacao">
+                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="taxa-alfabetizacao">
                     📚 Taxa de Alfabetização
                 </a>
-                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="renda-media">
+                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="renda-media">
                     💰 Renda Média
                 </a>
-                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="taxa-desemprego">
+                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="taxa-desemprego">
                     🏢 Taxa de Desemprego
                 </a>
-                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="acesso-saneamento">
+                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="acesso-saneamento">
                     💧 Acesso a Saneamento
                 </a>
-                  <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800" data-index="sobre-nos">
-					📖 Sobre Nós
-				</a>
-   
+                <a href="#" class="sidebar-item block p-3 rounded text-gray-700 hover:text-blue-800"
+                    data-index="sobre-nos">
+                    📖 Sobre Nós
+                </a>
+
             </nav>
 
             <div class="mt-8 p-4 bg-blue-50 rounded-lg">
@@ -162,26 +186,28 @@
             <div class="bg-white rounded-lg shadow-lg p-6 fade-in" id="content">
                 <!-- População Total -->
                 <div class="data-section" id="populacao">
-					<p class="text-gray-600 hidden" id="source-populacao">Fonte: IBGE, Censo Demográfico 2022.</p>
+                    <p class="text-gray-600 hidden" id="source-populacao">Fonte: IBGE, Censo Demográfico 2022.</p>
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">População Total</h2>
                         <div class="flex space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
-								ℹ️ Informações
-							</button>
+                            <button
+                                class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+                                ℹ️ Informações
+                            </button>
 
 
                         </div>
                     </div>
-                <div class="hidden" id="card-source-populacao">
-					<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
-						<p class="text-blue-800">Fonte: IBGE, Censo Demográfico 2022.</p>
-					</div>
-				</div>
-   
+                    <div class="hidden" id="card-source-populacao">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+                            <p class="text-blue-800">Fonte: IBGE, Censo Demográfico 2022.</p>
+                        </div>
+                    </div>
+
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div class="data-card">
@@ -196,62 +222,67 @@
                         </div>
                     </div>
                 </div>
-                
+
 
                 <!-- Densidade Demográfica -->
                 <div class="data-section hidden" id="densidade">
-					<p class="text-gray-600 hidden" id="source-densidade">Fonte: IBGE, Censo Demográfico 2022.</p>
-					<div class="flex items-center justify-between mb-6">
-						<h2 class="text-2xl font-bold text-gray-800">Densidade Demográfica</h2>
-						<div class="flex space-x-2">
-							<button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-								📥 Exportar Dados
-							</button>
-							<button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
-								ℹ️ Informações
-							</button>
-						</div>
-					</div>
-					<div class="hidden" id="card-source-densidade">
-					 <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
-						  <p class="text-blue-800">Fonte: IBGE, Censo Demográfico 2022.</p>
-						 </div>
-						</div>
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-						<div class="data-card">
-							<h3 class="font-semibold text-blue-800 mb-2">Área Territorial</h3>
-							<p class="text-3xl font-bold text-gray-800">1.123,975</p>
-							<p class="text-sm text-gray-600">km² (2024)</p>
-					    </div>
-					    <div class="data-card">
-							<h3 class="font-semibold text-blue-800 mb-2">Densidade Demográfica</h3>
-							<p class="text-3xl font-bold text-gray-800">76,21</p>
-							<p class="text-sm text-gray-600">hab/km² (2022)</p>
-						</div>
-					</div>
+                    <p class="text-gray-600 hidden" id="source-densidade">Fonte: IBGE, Censo Demográfico 2022.</p>
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Densidade Demográfica</h2>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                📥 Exportar Dados
+                            </button>
+                            <button
+                                class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+                                ℹ️ Informações
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden" id="card-source-densidade">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+                            <p class="text-blue-800">Fonte: IBGE, Censo Demográfico 2022.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">Área Territorial</h3>
+                            <p class="text-3xl font-bold text-gray-800">1.123,975</p>
+                            <p class="text-sm text-gray-600">km² (2024)</p>
+                        </div>
+                        <div class="data-card">
+                            <h3 class="font-semibold text-blue-800 mb-2">Densidade Demográfica</h3>
+                            <p class="text-3xl font-bold text-gray-800">76,21</p>
+                            <p class="text-sm text-gray-600">hab/km² (2022)</p>
+                        </div>
+                    </div>
 
-            <!-- Card da fonte agora dentro da data-section -->
-            <div class="hidden" id="card-source-densidade">
-				<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
-					<p class="text-blue-800">Fonte: IBGE, estimativas 2024.</p>
-				</div>
-			</div>
-		</div>
+                    <!-- Card da fonte agora dentro da data-section -->
+                    <div class="hidden" id="card-source-densidade">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+                            <p class="text-blue-800">Fonte: IBGE, estimativas 2024.</p>
+                        </div>
+                    </div>
+                </div>
 
-                
+
 
                 <!-- Idade Média -->
                 <div class="data-section hidden" id="idade-media">
-					<p class="text-gray-600 hidden" id="source-idade-media">Fonte: IBGE, Censo Demográfico 2010 e 2022.</p>
+                    <p class="text-gray-600 hidden" id="source-idade-media">Fonte: IBGE, Censo Demográfico 2010 e 2022.
+                    </p>
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">Indicadores Sociais</h2>
                         <div class="flex space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
-								ℹ️ Informações
-							</button>
+                            <button
+                                class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+                                ℹ️ Informações
+                            </button>
 
 
                         </div>
@@ -276,12 +307,14 @@
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">Taxa de Natalidade</h2>
                         <div class="flex space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
-								ℹ️ Informações
-							</button>
+                            <button
+                                class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+                                ℹ️ Informações
+                            </button>
 
 
                         </div>
@@ -294,12 +327,14 @@
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">Saúde Pública</h2>
                         <div class="flex space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
-								ℹ️ Informações
-							</button>
+                            <button
+                                class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+                                ℹ️ Informações
+                            </button>
 
                         </div>
                     </div>
@@ -316,12 +351,14 @@
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">Expectativa de Vida</h2>
                         <div class="flex space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
-								ℹ️ Informações
-							</button>
+                            <button
+                                class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+                                ℹ️ Informações
+                            </button>
 
                         </div>
                     </div>
@@ -333,12 +370,14 @@
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">Taxa de Alfabetização</h2>
                         <div class="flex space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
-								ℹ️ Informações
-							</button>
+                            <button
+                                class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+                                ℹ️ Informações
+                            </button>
 
                         </div>
                     </div>
@@ -350,12 +389,14 @@
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">Indicadores Econômicos</h2>
                         <div class="flex space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
-								ℹ️ Informações
-							</button>
+                            <button
+                                class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+                                ℹ️ Informações
+                            </button>
 
                         </div>
                     </div>
@@ -374,12 +415,14 @@
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">Taxa de Desemprego</h2>
                         <div class="flex space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
-								ℹ️ Informações
-							</button>
+                            <button
+                                class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+                                ℹ️ Informações
+                            </button>
 
                         </div>
                     </div>
@@ -391,12 +434,14 @@
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-2xl font-bold text-gray-800">Finanças Públicas</h2>
                         <div class="flex space-x-2">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button
+                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 📥 Exportar Dados
                             </button>
-                            <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
-								ℹ️ Informações
-							</button>
+                            <button
+                                class="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors info-btn">
+                                ℹ️ Informações
+                            </button>
 
                         </div>
                     </div>
@@ -417,97 +462,119 @@
 
                 <!-- Sobre Nós -->
                 <div class="data-section hidden" id="sobre-nos">
-					<div class="flex justify-between mb-6">
-						<div class="flex flex-col items-center">
-							<div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
-								<img src="Cl.JPEG" alt="Cláudio Falcão" class="w-32 h-32 border-4 border-yellow-500 transition-transform duration-300 transform hover:scale-110 mb-2">
-								<h3 class="font-semibold text-lg text-blue-800">Cláudio Falcão</h3>
-								<p class="text-gray-600 text-center">Desenvolvedor do Projeto</p>
-						</div>
-					</div>
-			    <div class="flex flex-col items-center">
-					<div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
-						<img src="HC.JPEG" alt="Cláudio Falcão" class="w-32 h-32 border-4 border-yellow-500 transition-transform duration-300 transform hover:scale-110 mb-2">
-						<h3 class="font-semibold text-lg text-blue-800">Heitor Moreira</h3>
-						<p class="text-gray-600 text-center">Desenvolvedor do Projeto</p>
-					</div>
-				</div>
-			</div>
-			    <p class="text-gray-700 mb-4">
-					Criamos este software com o objetivo de tornar os dados demográficos do nosso município mais acessíveis e compreensíveis. Nosso projeto busca transformar informações complexas em ferramentas visuais e interativas, ajudando estudantes, pesquisadores e a comunidade em geral a conhecer melhor Valença. Cada gráfico, mapa e indicador reflete nosso empenho em promover educação, transparência e curiosidade sobre nossa cidade.
-				</p>
-				<h3 class="font-semibold text-lg text-blue-800 mb-2">Curiosidades sobre Valença-BA</h3>
-				<ul class="list-disc list-inside mb-4">
-					<li>Valença é conhecida por suas belas praias e rica cultura.</li>
-					<li>A cidade possui um dos maiores portos do estado da Bahia.</li>
-					<li>Valença é um importante centro de comércio e turismo na região do Baixo Sul.</li>
-				</ul>
-				<h3 class="font-semibold text-lg text-blue-800 mb-2">História do Software</h3>
-				<p class="text-gray-700 mb-4">
-					Este software começou como uma ideia simples de apresentar dados demográficos de forma acessível. Desde a primeira versão, evoluímos para incluir mapas interativos e uma interface amigável, sempre buscando melhorar a experiência do usuário.
-				</p>
-				<h3 class="font-semibold text-lg text-blue-800 mb-2">Conecte-se Conosco</h3>
-				<p class="text-gray-700 mb-4">
-					Siga-nos nas redes sociais para mais atualizações e informações sobre Valença-BA!
-					</p>
-				</div>
+                    <div class="flex justify-between mb-6">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
+                                <img src="Cl.JPEG" alt="Cláudio Falcão"
+                                    class="w-32 h-32 border-4 border-yellow-500 transition-transform duration-300 transform hover:scale-110 mb-2">
+                                <h3 class="font-semibold text-lg text-blue-800">Cláudio Falcão</h3>
+                                <p class="text-gray-600 text-center">Desenvolvedor do Projeto</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
+                                <img src="HC.JPEG" alt="Heitor Moreira"
+                                    class="w-32 h-32 border-4 border-yellow-500 transition-transform duration-300 transform hover:scale-110 mb-2">
+                                <h3 class="font-semibold text-lg text-blue-800">Heitor Moreira</h3>
+                                <p class="text-gray-600 text-center">Desenvolvedor do Projeto</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Criamos este software com o objetivo de tornar os dados demográficos do nosso município mais
+                        acessíveis e compreensíveis. Nosso projeto busca transformar informações complexas em
+                        ferramentas visuais e interativas, ajudando estudantes, pesquisadores e a comunidade em geral a
+                        conhecer melhor Valença. Cada gráfico, mapa e indicador reflete nosso empenho em promover
+                        educação, transparência e curiosidade sobre nossa cidade.
+                    </p>
+                    <h3 class="font-semibold text-lg text-blue-800 mb-2">Curiosidades sobre Valença-BA</h3>
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Valença é conhecida por suas belas praias e rica cultura.</li>
+                        <li>A cidade possui um dos maiores portos do estado da Bahia.</li>
+                        <li>Valença é um importante centro de comércio e turismo na região do Baixo Sul.</li>
+                    </ul>
+                    <h3 class="font-semibold text-lg text-blue-800 mb-2">História do Software</h3>
+                    <p class="text-gray-700 mb-4">
+                        Este software começou como uma ideia simples de apresentar dados demográficos de forma
+                        acessível. Desde a primeira versão, evoluímos para incluir mapas interativos e uma interface
+                        amigável, sempre buscando melhorar a experiência do usuário.
+                    </p>
+                    <h3 class="font-semibold text-lg text-blue-800 mb-2">Conecte-se Conosco</h3>
+                    <p class="text-gray-700 mb-4">
+                        Siga-nos nas redes sociais para mais atualizações e informações sobre Valença-BA!
+                        <a href="https://www.instagram.com/Claudio._fl/" target="_blank">
+                            <p></p>
+                            <i class="fab fa-instagram text-2xl mr-2"></i> <!-- Ícone do Instagram -->
+                            @Claudio._fl
+                            <p></p>
+                        </a>
+                        <a href="https://www.instagram.com/heitor.sm7/" target="_blank">
+                            <p></p>
 
-    
+                            <i class="fab fa-instagram text-2xl mr-2"></i> <!-- Ícone do Instagram -->
+                            @heitor.sm7
+                        </a>
 
-<script>
-    // Elementos do menu e overlay
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
+                    </p>
+                </div>
 
-    // Alternar sidebar em dispositivos móveis
-    menuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-        overlay.classList.toggle('open');
-    });
 
-    overlay.addEventListener('click', () => {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('open');
-    });
 
-    // Alternar entre as seções de dados
-    const sidebarItems = document.querySelectorAll('.sidebar-item');
-    const dataSections = document.querySelectorAll('.data-section');
+                <script>
+                    // Elementos do menu e overlay
+                    const menuToggle = document.getElementById('menuToggle');
+                    const sidebar = document.getElementById('sidebar');
+                    const overlay = document.getElementById('overlay');
 
-    sidebarItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
+                    // Alternar sidebar em dispositivos móveis
+                    menuToggle.addEventListener('click', () => {
+                        sidebar.classList.toggle('open');
+                        overlay.classList.toggle('open');
+                    });
 
-            const targetId = item.getAttribute('data-index');
+                    overlay.addEventListener('click', () => {
+                        sidebar.classList.remove('open');
+                        overlay.classList.remove('open');
+                    });
 
-            // Remover active de todos e adicionar ao clicado
-            sidebarItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
+                    // Alternar entre as seções de dados
+                    const sidebarItems = document.querySelectorAll('.sidebar-item');
+                    const dataSections = document.querySelectorAll('.data-section');
 
-            // Esconder todas as seções e mostrar a clicada
-            dataSections.forEach(section => section.classList.add('hidden'));
-            document.getElementById(targetId).classList.remove('hidden');
+                    sidebarItems.forEach(item => {
+                        item.addEventListener('click', (e) => {
+                            e.preventDefault();
 
-            // Fechar sidebar em mobile
-            sidebar.classList.remove('open');
-            overlay.classList.remove('open');
-        });
-    });
+                            const targetId = item.getAttribute('data-index');
 
-    // Alternar card de informações de cada seção
-    dataSections.forEach(section => {
-    const infoButton = section.querySelector('.info-btn');
-    if(infoButton){
-		infoButton.addEventListener('click', () => {
-            const cardId = `card-source-${section.id}`;
-            const cardElement = document.getElementById(cardId);
-            if(cardElement) cardElement.classList.toggle('hidden');
-        });
-    }
-});
+                            // Remover active de todos e adicionar ao clicado
+                            sidebarItems.forEach(i => i.classList.remove('active'));
+                            item.classList.add('active');
 
-</script>
+                            // Esconder todas as seções e mostrar a clicada
+                            dataSections.forEach(section => section.classList.add('hidden'));
+                            document.getElementById(targetId).classList.remove('hidden');
+
+                            // Fechar sidebar em mobile
+                            sidebar.classList.remove('open');
+                            overlay.classList.remove('open');
+                        });
+                    });
+
+                    // Alternar card de informações de cada seção
+                    dataSections.forEach(section => {
+                        const infoButton = section.querySelector('.info-btn');
+                        if (infoButton) {
+                            infoButton.addEventListener('click', () => {
+                                const cardId = `card-source-${section.id}`;
+                                const cardElement = document.getElementById(cardId);
+                                if (cardElement) cardElement.classList.toggle('hidden');
+                            });
+                        }
+                    });
+
+                </script>
 
 </body>
+
 </html>
